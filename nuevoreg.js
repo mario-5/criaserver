@@ -27,8 +27,13 @@ if(!req.body.temperatura) {
   temp=req.body.temperatura;
   hum=req.body.humedad;
  };
- console.log(temp);
- console.log(hum);
+ console.log('Temperatura: '+temp+'  Humedad: '+hum);
+ let respuesta = {
+ error: false,
+ codigo: 200,
+ mensaje: 'Temperatura: '+temp+'  Humedad: '+hum
+};
+ 
  res.send(respuesta);
  });
 // open the database
