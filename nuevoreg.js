@@ -21,11 +21,11 @@ app.post('/', function (req, res) {
 
 let temp="";
 let hum="";
-if(!req.body.temperatura) {
+if(!req.body.SensorCode) {
   temp='sin registro';
  } else{
-  temp=req.body.temperatura;
-  hum=req.body.humedad;
+  temp=req.body.Value;
+  hum=req.body.Type;
  };
  console.log('Temperatura: '+temp+'  Humedad: '+hum);
  let respuesta = {
