@@ -17,7 +17,7 @@ let respuesta = {
 };
 
 app.post('/', function (req, res) {
-  console.log("Página de inicio...")
+  console.log("Recibiendo POST.");
 
 let temp="";
 let hum="";
@@ -28,6 +28,7 @@ if(!req.body.SensorCode) {
   hum=req.body.Type;
  };
  console.log('Temperatura: '+temp+'  Humedad: '+hum);
+ console.log(req.bodyparser);
  let respuesta = {
  error: false,
  codigo: 200,
