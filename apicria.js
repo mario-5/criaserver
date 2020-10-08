@@ -40,6 +40,7 @@ if(!req.body.SensorCode) {
                           };
  
  console.log(respuesta);
+ console.log(respuesta.mensaje);
 
  
  res.send(respuesta);
