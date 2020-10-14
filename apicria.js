@@ -56,9 +56,26 @@ if(!req.body.SensorCode) {
 
 app.get('/', function (req, res) {
 
-registros = mongo.leerdb();
+var ToFind =" ";
+ToFind = req.body.TFind;
+console.log ('respondo el get '+ToFind);
+var MongoClient = require('mongodb').MongoClient;
+//MongoClient.set('useUnifiedTopology', true);
+var url = "mongodb://localhost:27017/";
 
-res.send(registros);
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("criadb");
+  dbo.collection("granjauno").find({ToFind}).toArray(function(err, result) {
+    if (err) throw err;
+    var vuelta = result;
+    //console.log(result);
+    db.close();
+    res.send(result);
+  });
+}); 
+
+
 });
 // Correr el servidor con el puerto 8999.
 app.listen(9000, () => {
