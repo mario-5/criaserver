@@ -48,7 +48,7 @@ if(!req.body.SensorCode) {
                           };
  
  
- console.log(respuesta.mensaje);
+ console.log(respuesta);
 
  
  res.send(respuesta);
