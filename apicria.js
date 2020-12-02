@@ -48,7 +48,7 @@ if(!req.body.SensorCode) {
                           };
  
  
- console.log(respuesta);
+// console.log(respuesta);
 
  
  res.send(respuesta);
@@ -58,7 +58,7 @@ app.get('/', function (req, res) {
 
 var ToFind =" ";
 ToFind = req.body.TFind;
-console.log ('respondo el get '+ToFind);
+console.log ('respondo el get '+req.body);
 var MongoClient = require('mongodb').MongoClient;
 //MongoClient.set('useUnifiedTopology', true);
 var url = "mongodb://localhost:27017/";
