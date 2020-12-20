@@ -14,18 +14,18 @@ app.use(bodyParser.json());
 let respuesta = {
  error: false,
  codigo: 200,
- mensaje: 'del let'
+ mensaje: 'Inicializacion de variable'
 };
+
+// Gestion del POST de un nuevo registro a ser agregado a la base de datos
 
 app.post('/', function (req, res) {
 
-
-
 if(!req.body.SensorCode) {
-     respuesta = {
+      respuesta = {
       error: true,
       codigo: 400,
-       mensaje: 'Mensaje invalido '
+      mensaje: 'POST en formato invalido '
                    }; 
                    }else {
      			respuesta = {
@@ -38,7 +38,7 @@ if(!req.body.SensorCode) {
                	req.body.Value + " " +
                	req.body.Type + " "                
                       			};
-                       mongo.nuevalectura (
+                       mongo.nuevoregistro (
                        		req.body.SensorCode,
                			req.body.Day,
                			req.body.Time,
@@ -47,18 +47,19 @@ if(!req.body.SensorCode) {
                			req.body.Type);    
                           };
  
- 
-// console.log(respuesta);
-
- 
+ console.log(respuesta.mensaje);
  res.send(respuesta);
+ 
  });
+
+//tratamiento del GET para acceder a los registros de la base de datos
 
 app.get('/', function (req, res) {
 
 var ToFind =" ";
+
 ToFind = req.body.TFind;
-console.log ('respondo el get '+req.body);
+console.log ('respondo el get '+ToFind);
 var MongoClient = require('mongodb').MongoClient;
 //MongoClient.set('useUnifiedTopology', true);
 var url = "mongodb://localhost:27017/";
@@ -66,10 +67,9 @@ var url = "mongodb://localhost:27017/";
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("criadb");
-  dbo.collection("granjauno").find({ToFind}).toArray(function(err, result) {
+  dbo.collection("granjauno").find({"Value":25}).toArray(function(err, result) {
     if (err) throw err;
-    var vuelta = result;
-    //console.log(result);
+   
     db.close();
     res.send(result);
   });
@@ -77,7 +77,7 @@ MongoClient.connect(url, function(err, db) {
 
 
 });
-// Correr el servidor con el puerto 8999.
+// Correr el servidor con el puerto 9000.
 app.listen(9000, () => {
  console.log("El servidor está inicializado en el puerto 9000");
  });

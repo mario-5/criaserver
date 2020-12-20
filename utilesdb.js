@@ -3,7 +3,7 @@ var exports=module.exports={};
 
 
 //Add information to monogodb
-exports.nuevalectura=function(SC,Dre,Tme,Pce,Vue,Tpe){
+exports.nuevoregistro=function(SC,Dre,Tme,Pce,Vue,Tpe){
 
 
 //require modules
@@ -24,7 +24,7 @@ MongoClient.connect(url, function(err, db) {
   var myobj = { SensorCode: SC, Day:Dre, Time:Tme, Place: Pce, Value: Vue,Type:Tpe };
   dbo.collection("granjauno").insertOne(myobj, function(err, res) {
     if (err) throw err;
-    console.log("1 document inserted");
+    console.log("1 document inserted "+myobj.SensorCode+" "+myobj.Value+" "+myobj.Type);
     db.close();
   });
 }); 
