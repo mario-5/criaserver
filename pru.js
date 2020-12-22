@@ -5,8 +5,8 @@ var app = express();
 
 // Creates a server which runs on port 3000 and  
 // can be accessed through localhost:3000
-app.listen(3000, function() { 
-    console.log('server running on port 3000'); 
+app.listen(8947, function() { 
+    console.log('server running on port 8947'); 
 } ) 
 
 app.get('/name', function(req, res) {
